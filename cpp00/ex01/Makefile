@@ -1,7 +1,8 @@
-SRC			= megaphone.cpp
+INCS		= includes
+SRC			= Contact.cpp PhoneBook.cpp main.cpp
 OBJ			= $(SRC:.c=.o)
-NAME		= megaphone
-FLAGS		= -Wall -Wextra -Werror -std=c++98
+NAME		= phonebook
+FLAGS		= -Wall -Wextra -Werror -std=c++98 -I${INCS}
 
 ifeq (${DEBUG}, 1)
 	FLAGS	+= -fsanitize=thread

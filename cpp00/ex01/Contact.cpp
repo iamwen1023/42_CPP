@@ -2,7 +2,6 @@
 
 Contact::Contact()
 {
-    std::cout << "Contact construict" << std::endl;
     this->first_name="";
     this->last_name="";
     this->nick_name="";
@@ -12,7 +11,6 @@ Contact::Contact()
 }
 Contact::~Contact()
 {
-    std::cout << "Contact DEconstruict" << std::endl;
     return ;
 }
 

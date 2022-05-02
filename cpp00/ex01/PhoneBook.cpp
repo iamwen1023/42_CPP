@@ -2,12 +2,12 @@
 
 PhoneBook::PhoneBook()
 {
-    std::cout << "PhoneBook construict" << std::endl;
+    //std::cout << "PhoneBook construict" << std::endl;
     return ;
 }
 PhoneBook::~PhoneBook()
 {
-    std::cout << "PhoneBook DEconstruict" << std::endl;
+    //std::cout << "PhoneBook DEconstruict" << std::endl;
     return ;
 }
 
@@ -42,57 +42,75 @@ bool is_print(const std::string str)
     return (true);
 }
 
-void PhoneBook::add_contact(Contact *Contact)const
+void PhoneBook::add_contact(Contact *Contact)
 {
     std::string content("");
 
-    while(Contact->get_first_name().empty() == true )
+    while(content.empty() == true || Contact->get_first_name().empty() == true )
     {
         std::cout << "Firstname:"<< std::endl;
         std::getline(std::cin, content);
         if (content.empty() == true || !is_Alpha(content))
+        {
             std::cout << "Firstname should not be empty and be alphabetic characters."<< std::endl;
+            content.clear();
+        }
         else
             Contact->set_first_name(content);
     }
-    while(Contact->get_last_name().empty() == true)
+    content.clear();
+    while(content.empty() == true || Contact->get_last_name().empty() == true)
     {
         std::cout << "Lastname:"<< std::endl;
         std::getline(std::cin, content);
         if (content.empty() == true || is_Alpha(content) == false)
+        {
             std::cout << "Lastname should not be empty and be alphabetic characters."<< std::endl;
+            content.clear();
+        }
         else
             Contact->set_last_name(content);
     }
-    while(Contact->get_nick_name().empty() == true)
+    while(content.empty() == true || Contact->get_nick_name().empty() == true)
     {
         std::cout << "Nickname:"<< std::endl;
         std::getline(std::cin, content);
         if (content.empty() == true || is_Alpha(content) == false)
+        {
             std::cout << "Nickname should not be empty and be alphabetic characters."<< std::endl;
+            content.clear();
+        }
         else
             Contact->set_nick_name(content);
     }
-    while(Contact->get_phone_number().empty() == true)
+    content.clear();
+    while(content.empty() == true || Contact->get_phone_number().empty() == true)
     {
         std::cout << "Phone number:"<< std::endl;
         std::getline(std::cin, content);
         if (content.empty() == true || is_digits(content) == false)
+        {
             std::cout << "Phone number should not be empty and be numeric characters."<< std::endl;
+            content.clear();
+        }
         else
             Contact->set_phone_number(content);
     }
-    while(Contact->get_darkest_secret().empty() == true)
+    content.clear();
+    while(content.empty() == true || Contact->get_darkest_secret().empty() == true)
     {
-        std::cout << "darkest secret:"<< std::endl;
+        std::cout << "Darkest secret:"<< std::endl;
         std::getline(std::cin, content);
         if (content.empty() == true || is_print(content) == false)
+        {
             std::cout << "Darkest secret should not be empty and be printable characters."<< std::endl;
+            content.clear();
+        }
         else
             Contact->set_darkest_secret(content);
     }
     content.clear();
-    std::cout << "new contact saved" << std::endl;
+    std::cout << "New contact saved" << std::endl;
 }
 
 std::string content_lenlimit(std::string content)
@@ -167,33 +185,17 @@ void PhoneBook::menu()
         std::cout << "Welcome to PhoneBook, pleass enter: ADD, SEARCH or EXIT"<< std::endl;
         //std::getline(std::cin, cmd);
         std::cin.getline(cmd,sizeof(cmd));
-        std::cout << cmd << std::endl;
         if (!strcmp(cmd, "ADD"))
         {
             if (index >= -1)
                 index++;
-            if (index == 7)
+            if (index == 8)
                 index = 0;
-            std::cout << "in add" << index << std::endl;
             PhoneBook::add_contact(&this->ContactArr[index]);
-            std::cout << ContactArr[index].get_first_name() << std::endl;
-            std::cout << ContactArr[index].get_last_name() << std::endl;
-            std::cout << ContactArr[index].get_nick_name() << std::endl;
-            std::cout << ContactArr[index].get_phone_number() << std::endl;
-            std::cout << ContactArr[index].get_darkest_secret() << std::endl;
-            std::cout << "in add" << std::endl;
-
         }
         else if(!strcmp(cmd, "SEARCH"))
-        {
-            std::cout << "in search" << std::endl;
             PhoneBook::show_contacts();
-        }
         else if(!strcmp(cmd, "EXIT"))
-        {
-            std::cout << "in exit" << std::endl;
             break;
-        }
     }
-    std::cout << "EXIT"<< std::endl;
 }
