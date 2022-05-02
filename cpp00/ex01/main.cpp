@@ -1,7 +1,3 @@
-// #include <iostream>
-// #include <string.h>
-// #include "PhoneBook.hpp"
-// #include "Contact.hpp"
 #include "main.hpp"
 
 int main()
