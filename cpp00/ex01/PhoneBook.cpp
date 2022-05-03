@@ -71,6 +71,7 @@ void PhoneBook::add_contact(Contact *Contact)
         else
             Contact->set_last_name(content);
     }
+    content.clear();
     while(content.empty() == true || Contact->get_nick_name().empty() == true)
     {
         std::cout << "Nickname:"<< std::endl;
@@ -146,7 +147,7 @@ void PhoneBook::search_contact()
     std::getline(std::cin, content);
     while(i < 8)
     {
-        if(content.compare(std::to_string(i)) == 0)
+        if(content.compare(std::to_string(i+1)) == 0)
         {
             this->show_contact_detail(i);
             return ;
@@ -165,7 +166,7 @@ void PhoneBook::show_contacts()
     std::cout << "     Index|First name| Last name|  Nickname|"<< std::endl;
     while(index < 8)
     {
-        std::cout << std::right << std::setw(10)<< index<< "|";
+        std::cout << std::right << std::setw(10)<< index+1<< "|";
         std::cout << std::right << std::setw(10)<< content_lenlimit(this->ContactArr[index].get_first_name())<< "|";
         std::cout << std::right << std::setw(10)<< content_lenlimit(this->ContactArr[index].get_last_name())<< "|";
         std::cout << std::right << std::setw(10)<< content_lenlimit(this->ContactArr[index].get_nick_name())<< "|";

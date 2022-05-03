@@ -1,27 +1,29 @@
 INCS		= includes
 SRC			= Contact.cpp PhoneBook.cpp main.cpp
-OBJ			= $(SRC:.c=.o)
+OBJ			= $(SRC:.cpp=.o)
 NAME		= phonebook
 FLAGS		= -Wall -Wextra -Werror -std=c++98 -I${INCS}
+CC			= c++
+RM			= rm -rf
 
 ifeq (${DEBUG}, 1)
-	FLAGS	+= -fsanitize=thread
+    FLAGS    += -fsanitize=thread
 endif
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		g++ -o $@ $(OBJ) $(FLAGS)
+		$(CC) -o $@ $(OBJ) $(FLAGS)
 
-%.o: %.c
-		cc $(FLAGS) -c $< -o $(<:.c=.o)
+%.o: %.cpp
+		$(CC) $(FLAGS) -c $< -o $(<:.cpp=.o)
 
 clean:
 		$(RM) $(OBJ)
 
-fclean:		clean
+fclean: clean
 		$(RM)  $(NAME)
 
-re:		fclean all
+re:    fclean all
 
-.PHONY: 	all clean fclean re
+.PHONY:     all clean fclean re
