@@ -1,4 +1,5 @@
 #include "main.hpp"
+#include <sstream>
 
 PhoneBook::PhoneBook()
 {
@@ -141,13 +142,17 @@ void PhoneBook::show_contact_detail(int index)
 void PhoneBook::search_contact()
 {
     std::string content("");
+    std::stringstream    s;
+    std::string             output;
     int i(0);
 
     std::cout << "Enter an index to get more information: " << std::endl;
     std::getline(std::cin, content);
     while(i < 8)
     {
-        if(content.compare(std::to_string(i+1)) == 0)
+        s << i+1;
+        s >> output;
+        if(content.compare(output) == 0)
         {
             this->show_contact_detail(i);
             return ;
