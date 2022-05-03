@@ -7,6 +7,7 @@
 # include <ctype.h>
 # include <cstring>
 # include <iomanip>
+# include <sstream>
 
 # include "Contact.hpp"
 # include "PhoneBook.hpp"
