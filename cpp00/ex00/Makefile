@@ -1,7 +1,7 @@
 SRC			= megaphone.cpp
 OBJ			= $(SRC:.c=.o)
 NAME		= megaphone
-FLAGS		= -Wall -Wextra -Werror -std=c++98 -I${INCS}
+FLAGS		= -Wall -Wextra -Werror -std=c++98 
 
 ifeq (${DEBUG}, 1)
 	FLAGS	+= -fsanitize=thread

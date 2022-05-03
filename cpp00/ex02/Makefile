@@ -1,8 +1,7 @@
-INCS		= includes
-SRC			= action.c check.c clear.c ft_atoi.c ft_isdigit.c init.c main.c utils.c
+SRC			= Account.cpp tests.cpp
 OBJ			= $(SRC:.c=.o)
-NAME		= philo
-FLAGS		= -Wall -Wextra -Werror -pthread -I${INCS}
+NAME		= account
+FLAGS		= -Wall -Wextra -Werror -std=c++98
 
 ifeq (${DEBUG}, 1)
 	FLAGS	+= -fsanitize=thread
@@ -11,7 +10,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		gcc -o $@ $(OBJ) $(FLAGS)
+		g++ -o $@ $(OBJ) $(FLAGS)
 
 %.o: %.c
 		cc $(FLAGS) -c $< -o $(<:.c=.o)
