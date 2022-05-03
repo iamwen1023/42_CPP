@@ -1,5 +1,4 @@
 #include "main.hpp"
-#include <sstream>
 
 PhoneBook::PhoneBook()
 {
@@ -43,7 +42,7 @@ bool is_print(const std::string str)
     return (true);
 }
 
-void PhoneBook::add_contact(Contact *Contact)
+int PhoneBook::add_contact(Contact *Contact)
 {
     std::string content("");
 
@@ -51,6 +50,8 @@ void PhoneBook::add_contact(Contact *Contact)
     {
         std::cout << "Firstname:"<< std::endl;
         std::getline(std::cin, content);
+        if (std::cin.eof())
+			return 1;
         if (content.empty() == true || !is_Alpha(content))
         {
             std::cout << "Firstname should not be empty and be alphabetic characters."<< std::endl;
@@ -64,6 +65,8 @@ void PhoneBook::add_contact(Contact *Contact)
     {
         std::cout << "Lastname:"<< std::endl;
         std::getline(std::cin, content);
+        if (std::cin.eof())
+			return 1;
         if (content.empty() == true || is_Alpha(content) == false)
         {
             std::cout << "Lastname should not be empty and be alphabetic characters."<< std::endl;
@@ -77,6 +80,8 @@ void PhoneBook::add_contact(Contact *Contact)
     {
         std::cout << "Nickname:"<< std::endl;
         std::getline(std::cin, content);
+        if (std::cin.eof())
+			return 1;
         if (content.empty() == true || is_Alpha(content) == false)
         {
             std::cout << "Nickname should not be empty and be alphabetic characters."<< std::endl;
@@ -90,6 +95,8 @@ void PhoneBook::add_contact(Contact *Contact)
     {
         std::cout << "Phone number:"<< std::endl;
         std::getline(std::cin, content);
+        if (std::cin.eof())
+			return 1;
         if (content.empty() == true || is_digits(content) == false)
         {
             std::cout << "Phone number should not be empty and be numeric characters."<< std::endl;
@@ -103,6 +110,8 @@ void PhoneBook::add_contact(Contact *Contact)
     {
         std::cout << "Darkest secret:"<< std::endl;
         std::getline(std::cin, content);
+        if (std::cin.eof())
+			return 1;
         if (content.empty() == true || is_print(content) == false)
         {
             std::cout << "Darkest secret should not be empty and be printable characters."<< std::endl;
@@ -113,6 +122,7 @@ void PhoneBook::add_contact(Contact *Contact)
     }
     content.clear();
     std::cout << "New contact saved" << std::endl;
+    return 0;
 }
 
 std::string content_lenlimit(std::string content)
@@ -139,7 +149,7 @@ void PhoneBook::show_contact_detail(int index)
     std::cout << "Darkest_secret: " <<this->ContactArr[index].get_darkest_secret() << std::endl;
 }
 
-void PhoneBook::search_contact()
+int PhoneBook::search_contact()
 {
     std::string content("");
     std::stringstream    s;
@@ -148,6 +158,8 @@ void PhoneBook::search_contact()
 
     std::cout << "Enter an index to get more information: " << std::endl;
     std::getline(std::cin, content);
+    if (std::cin.eof())
+	    return  1;
     while(i < 8)
     {
         s << i+1;
@@ -155,15 +167,16 @@ void PhoneBook::search_contact()
         if(content.compare(output) == 0)
         {
             this->show_contact_detail(i);
-            return ;
+            return 0;
         }
         i++;
     }
     std::cout << "Invalid index!" << std::endl;
     this->search_contact();
+    return 0;
 }
 
-void PhoneBook::show_contacts()
+int PhoneBook::show_contacts()
 {
     int index(0);
     std::string content("");
@@ -178,7 +191,9 @@ void PhoneBook::show_contacts()
         std::cout << "\n"; 
         index++;
     }
-    this->search_contact();
+    if (this->search_contact() == 1)
+        return 1;
+    return 0;
 }
 
 void PhoneBook::menu()
@@ -191,17 +206,25 @@ void PhoneBook::menu()
         std::cout << "Welcome to PhoneBook, pleass enter: ADD, SEARCH or EXIT"<< std::endl;
         //std::getline(std::cin, cmd);
         std::cin.getline(cmd,sizeof(cmd));
+        if (std::cin.eof())
+			return ;
         if (!strcmp(cmd, "ADD"))
         {
             if (index >= -1)
                 index++;
             if (index == 8)
                 index = 0;
-            PhoneBook::add_contact(&this->ContactArr[index]);
+            if (PhoneBook::add_contact(&this->ContactArr[index]) == 1)
+                return ;
         }
         else if(!strcmp(cmd, "SEARCH"))
-            PhoneBook::show_contacts();
+        {
+            if (PhoneBook::show_contacts() == 1)
+                return ;
+        }
         else if(!strcmp(cmd, "EXIT"))
             break;
+        else
+            std::cout << "Invalid input!"<< std::endl;
     }
 }
