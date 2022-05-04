@@ -54,7 +54,7 @@ int PhoneBook::add_contact(Contact *Contact)
 			return 1;
         if (content.empty() == true || !is_Alpha(content))
         {
-            std::cout << "Firstname should not be empty and be alphabetic characters."<< std::endl;
+            std::cout << "Firstname should not be empty and should be alphabetic characters."<< std::endl;
             content.clear();
         }
         else
@@ -69,7 +69,7 @@ int PhoneBook::add_contact(Contact *Contact)
 			return 1;
         if (content.empty() == true || is_Alpha(content) == false)
         {
-            std::cout << "Lastname should not be empty and be alphabetic characters."<< std::endl;
+            std::cout << "Lastname should not be empty and should be alphabetic characters."<< std::endl;
             content.clear();
         }
         else
@@ -84,7 +84,7 @@ int PhoneBook::add_contact(Contact *Contact)
 			return 1;
         if (content.empty() == true || is_Alpha(content) == false)
         {
-            std::cout << "Nickname should not be empty and be alphabetic characters."<< std::endl;
+            std::cout << "Nickname should not be empty and should be alphabetic characters."<< std::endl;
             content.clear();
         }
         else
@@ -99,7 +99,7 @@ int PhoneBook::add_contact(Contact *Contact)
 			return 1;
         if (content.empty() == true || is_digits(content) == false)
         {
-            std::cout << "Phone number should not be empty and be numeric characters."<< std::endl;
+            std::cout << "Phone number should not be empty and should be numeric characters."<< std::endl;
             content.clear();
         }
         else
@@ -114,7 +114,7 @@ int PhoneBook::add_contact(Contact *Contact)
 			return 1;
         if (content.empty() == true || is_print(content) == false)
         {
-            std::cout << "Darkest secret should not be empty and be printable characters."<< std::endl;
+            std::cout << "Darkest secret should not be empty and should be printable characters."<< std::endl;
             content.clear();
         }
         else
@@ -149,11 +149,27 @@ void PhoneBook::show_contact_detail(int index)
     std::cout << "Darkest_secret: " <<this->ContactArr[index].get_darkest_secret() << std::endl;
 }
 
+int	str_to_int(std::string str)
+{
+	int		i(0);
+	int	    result;
+
+    result = 0;
+	while (str[i])
+	{
+        if (str[i] < '0' && str[i] > '9')
+            return (-1);
+		result = result * 10 + str[i] - '0';
+		i++;
+		if (result > 100)
+			return (-1);
+	}
+	return (result);
+}
+
 int PhoneBook::search_contact()
 {
     std::string content("");
-    std::stringstream    s;
-    std::string             output;
     int i(0);
 
     std::cout << "Enter an index to get more information: " << std::endl;
@@ -162,9 +178,7 @@ int PhoneBook::search_contact()
 	    return  1;
     while(i < 8)
     {
-        s << i+1;
-        s >> output;
-        if(content.compare(output) == 0)
+        if( str_to_int(content) == i+1)
         {
             this->show_contact_detail(i);
             return 0;
