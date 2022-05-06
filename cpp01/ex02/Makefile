@@ -1,6 +1,6 @@
-SRC			= main.cpp Zombie.cpp zombieHorde.cpp
+SRC			= main.cpp
 OBJ			= $(SRC:.cpp=.o)
-NAME		= Moarbrainz
+NAME		= HITHISISBRAIN
 FLAGS		= -Wall -Wextra -Werror -std=c++98 
 CC			= c++
 RM			= rm -rf
