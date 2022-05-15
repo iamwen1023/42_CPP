@@ -1,6 +1,6 @@
 SRC			= main.cpp Fixed.cpp
 OBJ			= $(SRC:.cpp=.o)
-NAME		= ocf
+NAME		= now
 FLAGS		= -Wall -Wextra -Werror -std=c++98 
 CC			= c++
 RM			= rm -rf

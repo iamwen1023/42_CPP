@@ -1,17 +1,27 @@
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name, Weapon &weap):_Weapon_tool(weap), _name(name)
+HumanB::HumanB(std::string name):_name(name)
 {
-    std::cout << "HumanA constructor\n";
+    this->_Weapon = NULL;
+    std::cout << "HumanB constructor\n";
     return ;
 }
 HumanB::~HumanB()
 {
-    std::cout << "HumanA Deconstructor\n";
+    std::cout << "HumanB Deconstructor\n";
     return ;
 }
 void HumanB::attack()
 {
-    std::cout << this->_name << "attacks with their " << this->_Weapon_tool.getType() << std::endl;
+    std::string type(this->_Weapon->getType());
+    if (type.empty() == false)
+        std::cout << this->_name << "attacks with their " << this->_Weapon->getType() << std::endl;
+    else
+        std::cout << this->_name << "attacks with their heads!" << std::endl;
+}
+
+void HumanB::setWeapon(Weapon &Weapon)
+{
+    this->_Weapon = &Weapon;
 }

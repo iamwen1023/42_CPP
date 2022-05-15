@@ -1,6 +1,6 @@
-SRC			= main.cpp Fixed.cpp
+SRC			= Harl.cpp main.cpp
 OBJ			= $(SRC:.cpp=.o)
-NAME		= ocf
+NAME		= harl
 FLAGS		= -Wall -Wextra -Werror -std=c++98 
 CC			= c++
 RM			= rm -rf
