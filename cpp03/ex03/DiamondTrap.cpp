@@ -18,7 +18,7 @@ DiamondTrap::DiamondTrap(std::string name): ScavTrap(name), FragTrap(name)
     ScavTrap::initEP();
 	FragTrap::initAD();
 }
-DiamondTrap::DiamondTrap(DiamondTrap const &src): ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap(DiamondTrap const &src): ClapTrap(), ScavTrap(), FragTrap()
 {
     std::cout << "DiamondTrap Copy constructor called" << std::endl;
     *this = src;
