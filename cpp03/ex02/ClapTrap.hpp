@@ -22,7 +22,7 @@ class ClapTrap
         void setEnergyPoints(int amount);
         void setName(std::string name);
 
-    private:
+    protected:
        std::string _name;
        int _hit_points;
        int _energy_points;

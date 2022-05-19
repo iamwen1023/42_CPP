@@ -19,7 +19,6 @@ class ClapTrap
         int getEnergyPoints( void ) const;
         std::string getName( void ) const;
 
-
     private:
        std::string _name;
        int _hit_points;

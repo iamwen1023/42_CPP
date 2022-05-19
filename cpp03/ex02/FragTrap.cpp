@@ -23,6 +23,15 @@ FragTrap::~FragTrap(void)
 {
     std::cout << "FragTrap Destructor called" << std::endl;
 }
+FragTrap &FragTrap::operator=(FragTrap const & rhs)
+{
+    std::cout << "FragTrap Assignment operator called" << std::endl;
+    this->_name = rhs.getName();
+    this->_hit_points = rhs.getHitPoints();
+    this->_energy_points = rhs.getEnergyPoints();
+    this->_attack_damage = rhs.getAttackDamage();
+    return (*this);
+}
 void FragTrap::highFivesGuys(void)
 {
     std::cout << "FragTrap :Positive high fives request!" << std::endl;
