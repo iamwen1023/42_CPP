@@ -19,6 +19,16 @@ ScavTrap::~ScavTrap(void)
     std::cout << "ScavTrap Destructor called" << std::endl;
 }
 
+ScavTrap &ScavTrap::operator=(ScavTrap const & rhs)
+{
+    std::cout << "ScavTrap Assignment operator called" << std::endl;
+    this->_name = rhs.getName();
+    this->_hit_points = rhs.getHitPoints();
+    this->_energy_points = rhs.getEnergyPoints();
+    this->_attack_damage = rhs.getAttackDamage();
+    return (*this);
+}
+
 void ScavTrap::guardGate(void)
 {
     std::cout<< "ScavTrap is now in Gate keeper mode." << std::endl;
@@ -35,4 +45,9 @@ void ScavTrap::attack(const std::string& target)
     {
         std::cout << "ScavTrap " << this->getName() << " dose not have enough energy points or attack damage <= 0 \n";
     }
+}
+
+void ScavTrap::initEP()
+{
+     this->_energy_points = 50;
 }
