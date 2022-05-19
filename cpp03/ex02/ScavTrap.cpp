@@ -9,7 +9,7 @@ ScavTrap::ScavTrap(std::string const name):ClapTrap(name)
     std::cout << "ScavTrap String constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap const &src)
+ScavTrap::ScavTrap(ScavTrap const &src):ClapTrap()
 {
     std::cout << "ScavTrap Copy constructor called" << std::endl;
     *this = src;
