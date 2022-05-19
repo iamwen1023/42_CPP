@@ -8,16 +8,16 @@ int main(void)
 	DiamondTrap	APlayer("Aplayer");
 	DiamondTrap	BPlayer("Bplayer");
 
-	std::cout<< APlayer.getName() << std::endl;
-	std::cout<< BPlayer.getName() << std::endl;
-	std::cout<<"Aplayer: attackpoint/hitpoint/energypoint : " 
-			<< APlayer.getAttackDamage() << "/" 
+	// std::cout<< APlayer.getName() << std::endl;
+	// std::cout<< BPlayer.getName() << std::endl;
+	std::cout<<"Aplayer: hitpoint/energypoint/attackpoint : " 
 			<< APlayer.getHitPoints() << "/" 
-			<< APlayer.getEnergyPoints() << std::endl;
-	std::cout<<"Bplayer: attackpoint/hitpoint/energypoint : " 
-			<< BPlayer.getAttackDamage() << "/" 
+			<< APlayer.getEnergyPoints() << "/"
+			<< APlayer.getAttackDamage() << std::endl;
+	std::cout<<"Bplayer: hitpoint/energypoint/attackpoint : " 
 			<< BPlayer.getHitPoints() << "/" 
-			<< BPlayer.getEnergyPoints() << std::endl;
+			<< BPlayer.getEnergyPoints() << "/"
+			<< BPlayer.getAttackDamage() << std::endl;
     BPlayer.beRepaired(10);
 	APlayer.attack("Bplayer");
     if (APlayer.getAttackDamage() > 0 && APlayer.getEnergyPoints() > 0)
@@ -34,15 +34,15 @@ int main(void)
     }
 	APlayer.highFivesGuys();
 	APlayer.whoAmI();
-	std::cout<<"Aplayer: attackpoint/hitpoint/energypoint : " 
-			<< APlayer.getAttackDamage() << "/" 
+	std::cout<<"Aplayer: hitpoint/energypoint/attackpoint : " 
 			<< APlayer.getHitPoints() << "/" 
-			<< APlayer.getEnergyPoints() << std::endl;
-	std::cout<<"Bplayer: attackpoint/hitpoint/energypoint : " 
-			<< BPlayer.getAttackDamage() << "/" 
+			<< APlayer.getEnergyPoints() << "/"
+			<< APlayer.getAttackDamage() << std::endl;
+	std::cout<<"Bplayer: hitpoint/energypoint/attackpoint : " 
 			<< BPlayer.getHitPoints() << "/" 
-			<< BPlayer.getEnergyPoints() << std::endl;
-	APlayer = BPlayer;
-	APlayer.whoAmI();
+			<< BPlayer.getEnergyPoints() << "/"
+			<< BPlayer.getAttackDamage() << std::endl;
+	// APlayer = BPlayer;
+	// APlayer.whoAmI();
 	return (0);
 }

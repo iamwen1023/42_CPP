@@ -36,13 +36,13 @@ void ScavTrap::guardGate(void)
 
 void ScavTrap::attack(const std::string& target)
 {
-    if (this->getEnergyPoints() > 0 && this->getAttackDamage() > 0)
+    if (this->getEnergyPoints() > 0 && this->getAttackDamage() > 0 && this->_hit_points > 0)
     {
         std::cout << "ScavTrap " << this->getName() <<" attacks "<< target << ", causing "<< this->getAttackDamage() << " points of damage!\n";
         this->setEnergyPoints(this->getEnergyPoints() - 1);
     }
     else 
     {
-        std::cout << "ScavTrap " << this->getName() << " dose not have enough energy points or attack damage <= 0 \n";
+        std::cout << "ScavTrap " << this->getName() << " can not attack \n";
     }
 }

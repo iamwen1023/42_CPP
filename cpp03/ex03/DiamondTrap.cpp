@@ -36,9 +36,10 @@ void DiamondTrap::attack(const std::string& target)
 
 DiamondTrap &DiamondTrap::operator=(DiamondTrap const & rhs)
 {
+    std::string	nameToBe = rhs._name;
     std::cout << "DiamondTrap Assignment operator called" << std::endl;
-    this->_name = rhs.getName();
-    ClapTrap::_name = rhs.getName().append("_clap_name");
+    this->_name = nameToBe;
+    ClapTrap::_name = nameToBe.append("_clap_name");
     this->_hit_points = rhs.getHitPoints();
     this->_energy_points = rhs.getEnergyPoints();
     this->_attack_damage = rhs.getAttackDamage();
@@ -48,8 +49,4 @@ void DiamondTrap::whoAmI()
 {
     std::cout << "my name : " << this->_name
              << " my ClapTrap name : " << this->ClapTrap::_name << std::endl;
-}
-std::string DiamondTrap::getName( void ) const
-{
-    return this->_name;
 }

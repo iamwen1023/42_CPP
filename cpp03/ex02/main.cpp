@@ -7,7 +7,7 @@ int main(void)
 	FragTrap	APlayer("Aplayer");
 	FragTrap	BPlayer("Bplayer");
 
-   BPlayer.beRepaired(10);
+    BPlayer.beRepaired(10);
 	APlayer.attack("Bplayer");
     if (APlayer.getAttackDamage() > 0 && APlayer.getEnergyPoints() > 0)
     {
@@ -22,13 +22,13 @@ int main(void)
 	    APlayer.takeDamage(BPlayer.getAttackDamage());
     }
 	APlayer.highFivesGuys();
-	std::cout<<"Aplayer: attackpoint/hitpoint/energypoint : " 
-			<< APlayer.getAttackDamage() << "/" 
+	std::cout<<"Aplayer: hitpoint/energypoint/attackpoint : " 
 			<< APlayer.getHitPoints() << "/" 
-			<< APlayer.getEnergyPoints() << std::endl;
-	std::cout<<"Bplayer: attackpoint/hitpoint/energypoint : " 
-			<< BPlayer.getAttackDamage() << "/" 
+			<< APlayer.getEnergyPoints() << "/"
+			<< APlayer.getAttackDamage() << std::endl;
+	std::cout<<"Bplayer: hitpoint/energypoint/attackpoint : " 
 			<< BPlayer.getHitPoints() << "/" 
-			<< BPlayer.getEnergyPoints() << std::endl;
+			<< BPlayer.getEnergyPoints() << "/"
+			<< BPlayer.getAttackDamage() << std::endl;
 	return (0);
 }
