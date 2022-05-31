@@ -50,17 +50,21 @@ int main()
 	// }
     std::cout << "~~~~~~Kitty and Cutee's brains~~~~~~\n";
 	Cat kitty;
+    std::cout << "\n";
 	kitty.addIdea("kitty idea 1");
 	kitty.addIdea("kitty idea 2");
+
 	Cat cutee(kitty);
 	cutee.addIdea("cutee idea 1");
 	kitty.printOutIdeas();
     std::cout << "~~~~~~" << std::endl;
 	cutee.printOutIdeas();
+    
 	Cat newCat=cutee;
     std::cout << "~~~~~~" << std::endl;
     newCat.addIdea("new one idea");
     newCat.printOutIdeas();
+
 
     return 0;
 }

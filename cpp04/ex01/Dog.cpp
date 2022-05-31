@@ -17,7 +17,6 @@ Dog::Dog(Dog const &src):Animal()
         this->DogBrain->ideas[i] = src.DogBrain->ideas[i];
         i++;
     }
-    *this = src;
 }
 Dog::~Dog(void)
 {
