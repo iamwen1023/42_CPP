@@ -14,7 +14,7 @@ class Cat : public Animal
         void addIdea( std::string idea );
         void printOutIdeas(void) const;
     private:
-        Brain *CatBrain;
+        Brain *catBrain;
 
 };
 

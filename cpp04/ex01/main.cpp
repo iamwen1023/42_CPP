@@ -52,11 +52,13 @@ int main()
 	Cat kitty;
 	kitty.addIdea("kitty idea 1");
 	kitty.addIdea("kitty idea 2");
+    kitty.printOutIdeas();
 	Cat cutee(kitty);
 	cutee.addIdea("cutee idea 1");
 	kitty.printOutIdeas();
     std::cout << "~~~~~~" << std::endl;
 	cutee.printOutIdeas();
+    std::cout << "~~~~~~" << std::endl;
 	Cat newCat=cutee;
     std::cout << "~~~~~~" << std::endl;
     newCat.addIdea("new one idea");

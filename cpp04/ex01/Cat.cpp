@@ -4,26 +4,24 @@ Cat::Cat(void):Animal()
 {
     std::cout << "Cat Default constructor called" << std::endl;
     this->type = "Cat";
-    this->CatBrain = new Brain();  
+    this->catBrain = new Brain();  
 }
 Cat::Cat(Cat const &src):Animal()
 {
     std::cout << "Cat Copy constructor called" << std::endl;
     this->type = src.getType();
-    // this->CatBrain = new Brain();
-    // int i = 0;
-    // while(!src.CatBrain->ideas[i].empty() && i < 100)
-    // {
-    //     this->CatBrain->ideas[i] = src.CatBrain->ideas[i];
-    //     i++;
-    // }
-    this->CatBrain = NULL;
-    *this = src;
+    this->catBrain = new Brain();
+    int i = 0;
+    while(!src.catBrain->ideas[i].empty() && i < 100)
+    {
+        this->catBrain->ideas[i] = src.catBrain->ideas[i];
+        i++;
+    }
+    // *this = src;
 }
 Cat::~Cat(void)
 {
-    if (this->CatBrain)
-        delete this->CatBrain;
+    delete this->catBrain;
     std::cout << "Cat Destructor called" << std::endl;
 }
 
@@ -31,14 +29,13 @@ Cat &Cat::operator=(Cat const & rhs)
 {
     std::cout << "Cat Assignment operator called" << std::endl;
     this->type = rhs.getType();
-    this->CatBrain = new Brain();
-    // int i = 0;
-    // while(!rhs.CatBrain->ideas[i].empty() && i < 100)
-    // {
-    //     this->CatBrain->ideas[i] = rhs.CatBrain->ideas[i];
-    //     i++;
-    // }
-    this->CatBrain = rhs.CatBrain;
+    this->catBrain = new Brain();
+    int i = 0;
+    while(!rhs.catBrain->ideas[i].empty() && i < 100)
+    {
+        this->catBrain->ideas[i] = rhs.catBrain->ideas[i];
+        i++;
+    }
     return (*this);
 }
 
@@ -50,26 +47,26 @@ void Cat::makeSound(void) const
 void Cat::addIdea( std::string idea )
 {
     int i = 0;
-    while(!this->CatBrain->ideas[i].empty() && i < 100)
+    while(!this->catBrain->ideas[i].empty() && i < 100)
     {
         i++;
     }
     if (i == 99)
-        this->CatBrain->ideas[0] = idea;
+        this->catBrain->ideas[0] = idea;
     else
-        this->CatBrain->ideas[i] = idea;
+        this->catBrain->ideas[i] = idea;
 }
 void Cat::printOutIdeas(void) const
 {
     int i = 0;
-    if (this->CatBrain->ideas[i].empty())
+    if (this->catBrain->ideas[i].empty())
     {
         std::cout << "no idea~" << std::endl;
         return ;
     }
-    while(!this->CatBrain->ideas[i].empty() && i < 100)
+    while(!this->catBrain->ideas[i].empty() && i < 100)
     {
-        std::cout << i << ":" << this->CatBrain->ideas[i] << std::endl;
+        std::cout << i << ":" << this->catBrain->ideas[i] << std::endl;
         i++;
     }
 }

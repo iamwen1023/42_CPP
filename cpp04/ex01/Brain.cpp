@@ -7,12 +7,6 @@ Brain::Brain(void)
 Brain::Brain(Brain const &src)
 {
     std::cout << "Brain Copy constructor called" << std::endl;
-    int i = 0;
-    while(!src.ideas[i].empty() && i < 100)
-    {
-        this->ideas[i] = src.ideas[i];
-        i++;
-    }
     *this = src;
 }
 Brain::~Brain(void)
