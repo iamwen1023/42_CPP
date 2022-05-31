@@ -17,7 +17,6 @@ Cat::Cat(Cat const &src):AAnimal()
         this->CatBrain->ideas[i] = src.CatBrain->ideas[i];
         i++;
     }
-    *this = src;
 }
 Cat::~Cat(void)
 {
