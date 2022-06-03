@@ -10,13 +10,13 @@ Cat::Cat(const Cat &src):Animal()
 {
     std::cout << "Cat Copy constructor called" << std::endl;
     this->type = src.getType();
-    this->catBrain = new Brain();
-    int i = 0;
-    while(!src.catBrain->ideas[i].empty() && i < 100)
-    {
-        this->catBrain->ideas[i] = src.catBrain->ideas[i];
-        i++;
-    }
+    this->catBrain = new Brain(*(src.catBrain));
+    // int i = 0;
+    // while(!src.catBrain->ideas[i].empty() && i < 100)
+    // {
+    //     this->catBrain->ideas[i] = src.catBrain->ideas[i];
+    //     i++;
+    // }
     // *this = src;
 }
 Cat::~Cat(void)
@@ -30,16 +30,15 @@ Cat &Cat::operator=(Cat const & rhs)
     std::cout << "Cat Assignment operator called" << std::endl;
     this->type = rhs.getType();
     if (this->catBrain)
-        delete catBrain;
-    this->catBrain = new Brain();
+        delete this->catBrain;
+    this->catBrain = new Brain(*(rhs.catBrain));
     // int i = 0;
     // while(!rhs.catBrain->ideas[i].empty() && i < 100)
     // {
     //     this->catBrain->ideas[i] = rhs.catBrain->ideas[i];
     //     i++;
     // }
-    std::cout << "HERE" << std::endl;
-    this->catBrain = rhs.catBrain;
+    // this->catBrain = rhs.catBrain;
     return (*this);
 }
 

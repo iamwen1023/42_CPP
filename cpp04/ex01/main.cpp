@@ -38,7 +38,7 @@ int main()
 	// }
     // std::cout << "-------Dogs and cats making sound.-------\n" <<  std::endl;
 	// for (int i = 0; i < n; i++) {
-	// 	std::cout << "Animal type: " << \
+	// 	std::cout << "Animal type: " << 
 	// 		animals[i]->getType() << " " << std::endl;
 	// 	animals[i]->makeSound();
 	// 	animals[i]->addIdea("idea1");
@@ -50,7 +50,6 @@ int main()
 	// }
     std::cout << "~~~~~~Kitty and Cutee's brains~~~~~~\n";
 	Cat kitty;
-    std::cout << "\n";
 	kitty.addIdea("kitty idea 1");
 	kitty.addIdea("kitty idea 2");
     kitty.printOutIdeas();
