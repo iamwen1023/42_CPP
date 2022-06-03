@@ -10,13 +10,13 @@ Dog::Dog(Dog const &src):Animal()
 {
     std::cout << "Dog Copy constructor called" << std::endl;
     this->type = src.getType();
-    this->dogBrain = new Brain();
-    int i = 0;
-    while(!src.dogBrain->ideas[i].empty() && i < 100)
-    {
-        this->dogBrain->ideas[i] = src.dogBrain->ideas[i];
-        i++;
-    }
+    this->dogBrain = new Brain(*(src.dogBrain));
+    // int i = 0;
+    // while(!src.dogBrain->ideas[i].empty() && i < 100)
+    // {
+    //     this->dogBrain->ideas[i] = src.dogBrain->ideas[i];
+    //     i++;
+    // }
     // *this = src;
 }
 Dog::~Dog(void)
@@ -31,13 +31,13 @@ Dog &Dog::operator=(Dog const & rhs)
     this->type = rhs.getType();
     if (this->dogBrain)
         delete this->dogBrain;
-    this->dogBrain = new Brain();
-    int i = 0;
-    while(!rhs.dogBrain->ideas[i].empty() && i < 100)
-    {
-        this->dogBrain->ideas[i] = rhs.dogBrain->ideas[i];
-        i++;
-    }
+    this->dogBrain = new Brain(*(rhs.dogBrain));
+    // int i = 0;
+    // while(!rhs.dogBrain->ideas[i].empty() && i < 100)
+    // {
+    //     this->dogBrain->ideas[i] = rhs.dogBrain->ideas[i];
+    //     i++;
+    // }
     return (*this);
 }
 
