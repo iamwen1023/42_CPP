@@ -10,6 +10,8 @@ Cat::Cat(const Cat &src):Animal()
 {
     std::cout << "Cat Copy constructor called" << std::endl;
     this->type = src.getType();
+    if (this->catBrain)
+        delete catBrain;
     this->catBrain = new Brain();
     int i = 0;
     while(!src.catBrain->ideas[i].empty() && i < 100)

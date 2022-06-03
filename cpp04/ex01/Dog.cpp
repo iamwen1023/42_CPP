@@ -29,6 +29,8 @@ Dog &Dog::operator=(Dog const & rhs)
 {
     std::cout << "Dog Assignment operator called" << std::endl;
     this->type = rhs.getType();
+    if (this->dogBrain)
+        delete this->dogBrain;
     this->dogBrain = new Brain();
     int i = 0;
     while(!rhs.dogBrain->ideas[i].empty() && i < 100)
