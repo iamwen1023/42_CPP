@@ -26,7 +26,7 @@ int	main(){
 	std::cout << "\n";
 
 	b1.signForm(scfForm);
-	b1.execute(scfForm);
+	b1.executeForm(scfForm);
 	std::cout << "\n";
 
 	b2.signForm(scfForm);
