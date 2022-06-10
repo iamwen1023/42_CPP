@@ -32,9 +32,9 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
         throw AForm::FormUnsignedException();
     try {
         myfile.open(fileName.append("_shrubbery").c_str(), std::fstream::out);
-        myfile << "root node" << std::endl
-           << "├─ node1"<< std::endl
-           << "│  └─ node11"<< std::endl
+        myfile << "root node" <<std::endl
+           << "├─ node1" <<std::endl
+           << "│  └─ node11" <<std::endl
            << "└─ node2" <<std::endl;
         myfile.close();
     }

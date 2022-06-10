@@ -18,6 +18,7 @@ int	main(){
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+    std::cout << "--------------\n";
 	std::cout << b1 << std::endl;
 
 	std::cout << "------- b2 -------\n";
@@ -35,18 +36,20 @@ int	main(){
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+    std::cout << "--------------\n";
 	std::cout << b2 << std::endl;
 
 	std::cout << "~~~~~~~ Bureaucrat on the heap  ~~~~~~~\n";
 	Bureaucrat* hb = new Bureaucrat("hb", 130);
-	std::cout << *hb;
+	std::cout << *hb << std::endl;
 	try {
 		std::cout << "Try to downgrade hb:\n";
 		hb->decreGrade();
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-
+    std::cout << "--------------\n";
+    std::cout << *hb << std::endl;
 	delete hb;
 	std::cout << "~~~~~~~ instancialize with bad grade value ~~~~~~~\n";
 

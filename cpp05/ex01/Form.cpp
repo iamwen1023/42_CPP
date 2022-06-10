@@ -18,16 +18,16 @@ Form & Form::operator=(Form const & src){
     this->_ifSigned = src.getIfSign();
     return (*this);
 }
-std::string Form::getName()const{
+std::string Form::getName() const{
     return this->_name;
 }
-bool Form::getIfSign()const{
+bool Form::getIfSign() const{
     return this->_ifSigned;
 }
-int Form::getSignGrade()const{
+int Form::getSignGrade() const{
     return this->_signGrade;
 }
-int Form::getExecGrade()const{
+int Form::getExecGrade() const{
     return this->_execGrade;
 }
 void Form::beSigned(Bureaucrat const *bur){
@@ -47,9 +47,9 @@ char const *	Form::GradeTooLowException::what() const throw()
 }
 std::ostream &operator<<(std::ostream &o, Form const &i)
 {
-    o << "name : " << i.getName()
-      << ", ifsigned : " << i.getIfSign()
-      << ", signGrade :" << i.getSignGrade()
-      << ", execGrade :" << i.getExecGrade() << std::endl;
+    o << "Name: " << i.getName()
+      << ", ifsigned: " << i.getIfSign()
+      << ", signGrade: " << i.getSignGrade()
+      << ", execGrade: " << i.getExecGrade() << std::endl;
     return o;
 }

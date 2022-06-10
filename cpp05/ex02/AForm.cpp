@@ -31,6 +31,8 @@ int AForm::getExecGrade()const{
     return this->_execGrade;
 }
 void AForm::beSigned(Bureaucrat const *bur){
+    if (this->_ifSigned == true)
+        throw AForm::FormalreadysignedException();
     if (bur->getGrade() > this->getSignGrade())
         throw AForm::GradeTooLowException();
     else
@@ -48,6 +50,10 @@ char const *	AForm::GradeTooLowException::what() const throw()
 char const *	AForm::FormUnsignedException::what() const throw()
 {
     return ("Form has not been signed");
+}
+char const *	AForm::FormalreadysignedException::what() const throw()
+{
+    return ("Form has already been signed");
 }
 std::ostream &operator<<(std::ostream &o, AForm const &i)
 {

@@ -18,11 +18,11 @@ Intern & Intern::operator=(Intern const & src){
 }
 char const *	Intern::TargetEmptyException::what() const throw()
 {
-    return ("Error: TargetName is empty");
+    return ("TargetName is empty");
 }
 char const *	Intern::InvalidFormException::what() const throw()
 {
-    return ("Error: Invalid FormName");
+    return ("Invalid FormName");
 }
 
 AForm *Intern::makeForm(std::string formName, std::string target) const{
