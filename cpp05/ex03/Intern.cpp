@@ -34,8 +34,10 @@ AForm *Intern::makeForm(std::string formName, std::string target) const{
         throw Intern::TargetEmptyException();
     else{
         for(int i = 0; i < 3; i++){
-            if(formNameList[i].compare(formName) == 0)
+            if(formNameList[i].compare(formName) == 0){
+                std::cout << "Intern creates " << formNameList[i] << ": " << target << std::endl;
                 return ((this->*ft_ptr[i])(target));
+            }
         }
     }
     throw Intern::InvalidFormException();
