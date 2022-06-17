@@ -25,7 +25,7 @@ class Bureaucrat
             public:
                 virtual const char* what() const throw();
         };
-        void signForm(Form &form);
+        void signForm(Form &form) const;
         
     private:
         const std::string name;
