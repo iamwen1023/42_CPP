@@ -54,7 +54,7 @@ void identify(Base& p){
 int main(){
     Base *base_ptr = generate();
     Base &base_ref = *base_ptr;
-    Base *another= NULL;
+    //Base *another= NULL;
     identify(base_ptr);
     //identify(another);
     identify(base_ref);
