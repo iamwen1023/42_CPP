@@ -34,12 +34,12 @@ void Conversion::toChar() const{
         if (!isprint(input.c_str()[0]))
 			throw Conversion::NonDisplayableException();
 		else
-			std::cout << static_cast<char>(input.c_str()[0]) << std::endl;
+			std::cout << '\'' << static_cast<char>(input.c_str()[0]) << '\'' << std::endl;
     }
     else if (!isprint(temp))
         throw Conversion::NonDisplayableException();
     else
-        std::cout << static_cast<char>(temp) << std::endl;
+        std::cout << '\'' << static_cast<char>(temp) << '\'' << std::endl;
 }
 void Conversion::toInt() const{
     std::string input = this->getInput();
@@ -135,16 +135,18 @@ bool Conversion::checkFloat() const{
 		else if (input.c_str()[i] == '.')
         {
             count++;
-            if ( i+1 == input.length() || count > 1 || i+2 == input.length())
+            if ( i+1 == input.length() || i+2 == input.length())
                 return false;
             i++;
         }
-        else if (i + 1 == input.length() && input.c_str()[i] == 'f')
+        else if (i + 1 == input.length() && input.c_str()[i] == 'f' && count == 1)
             return true;
         else
             return false;
         
     }
+    if (count != 1)
+        return false;
     return true;
 }
 bool Conversion::checkDouble() const{
@@ -162,13 +164,15 @@ bool Conversion::checkDouble() const{
 		else if (input.c_str()[i] == '.')
         {
             count++;
-            if ( i+1 == input.length() || count > 1)
+            if ( i+1 == input.length())
                 return false;
             i++;
         }
         else
             return false;
     }
+    if (count != 1)
+        return false;
     return true;
 }
 
