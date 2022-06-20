@@ -5,6 +5,7 @@
 #include <iostream>
 #include <exception>
 #include <iomanip>
+#include <limits>
 
 class Conversion{
     public:
@@ -20,6 +21,10 @@ class Conversion{
 		void toDouble() const;
         void printOut() const;
         bool ifNanOrInf() const;
+        bool checkChar() const;
+        bool checkInt() const;
+        bool checkFloat() const;
+        bool checkDouble() const;
         class NonDisplayableException : public std::exception {
 			public:
 				virtual char const * what() const throw();
@@ -30,9 +35,6 @@ class Conversion{
 		};
     private:
         std::string _input;
-
-        
-
 };
 
 

@@ -28,7 +28,7 @@ void Conversion::toChar() const{
     std::cout << "char: ";
     if (this->ifNanOrInf() == true)
         throw Conversion::ImpossibleException();
-    else if (errno == ERANGE || temp > 255 || temp < 0)
+    else if (temp > 255 || temp < 0)
         throw Conversion::ImpossibleException();
     else if (input.length() == 1 && !isdigit(input.c_str()[0])){
         if (!isprint(input.c_str()[0]))
@@ -36,7 +36,7 @@ void Conversion::toChar() const{
 		else
 			std::cout << static_cast<char>(input.c_str()[0]) << std::endl;
     }
-    else if (temp < 32 || temp > 126)
+    else if (!isprint(temp))
         throw Conversion::NonDisplayableException();
     else
         std::cout << static_cast<char>(temp) << std::endl;
@@ -50,10 +50,10 @@ void Conversion::toInt() const{
     std::cout << "int: ";
     if (this->ifNanOrInf() == true)
         throw Conversion::ImpossibleException();
-    else if ( errno == ERANGE || temp > std::numeric_limits<int>::max() || temp < std::numeric_limits<int>::min())
-        throw Conversion::ImpossibleException();
     else if (input.length() == 1 && !isdigit(input.c_str()[0]))
 		std::cout << static_cast<int>(input.c_str()[0]) << std::endl;
+    else if (temp > std::numeric_limits<int>::max() || temp < std::numeric_limits<int>::min())
+        throw Conversion::ImpossibleException();
     else
         std::cout << static_cast<int>(temp) << std::endl;
     
@@ -65,38 +65,121 @@ void Conversion::toFloat() const{
 
     temp = std::strtold(input.c_str(), &str_end);
     std::cout << "float: ";
-    if (input.compare("-inf") || input.compare("+inf") || input.compare("nan"))
+    if (!input.compare("-inf") || !input.compare("+inf") || !input.compare("nan"))
         std::cout << input << "f" << std::endl;
-    if (input.compare("-inff") || input.compare("+inff") || input.compare("nanf"))
+    else if (!input.compare("-inff") || !input.compare("+inff") || !input.compare("nanf"))
         std::cout << input  << std::endl;
-    else if ( errno == ERANGE || temp > std::numeric_limits<float>::max() || temp < std::numeric_limits<float>::min())
-        throw Conversion::ImpossibleException();
     else if (input.length() == 1 && !isdigit(input.c_str()[0]))
-		std::cout << static_cast<float>(input.c_str()[0]) << std::endl;
+		std::cout << std::setprecision(1) << std::fixed << static_cast<float>(input.c_str()[0]) << "f" << std::endl;
+    else if (temp > std::numeric_limits<float>::max() || temp < -std::numeric_limits<float>::max())
+        throw Conversion::ImpossibleException();
     else
         std::cout << std::setprecision(1) << std::fixed << static_cast<float>(temp) << "f" << std::endl;
-
-
 }
 
 void Conversion::toDouble() const{
+    std::string input = this->getInput();
     long double temp = 0;
     char *str_end = NULL;
 
-    temp = std::strtold(this->getInput().c_str(), &str_end);
-    if ((temp < std::numeric_limits<double>::min()) || 
-        (temp > std::numeric_limits<double>::max()) || 
-        errno == ERANGE)
-        std::cout << "overflow" << temp << std::endl;
-    std::cout << "temp :" << temp << std::endl;
-    std::cout << "temp :|" << str_end <<"|" << std::endl;
-    temp = std::strtold(str_end, &str_end);
-    std::cout << "temp :" << temp << std::endl;
-    std::cout << "temp :|" << str_end <<"|" << std::endl;
+    temp = std::strtold(input.c_str(), &str_end);
+    std::cout << "double: ";
+    if (!input.compare("-inf") || !input.compare("+inf") || !input.compare("nan"))
+        std::cout << input  << std::endl;
+    else if (!input.compare("-inff") || !input.compare("+inff") || !input.compare("nanf"))
+        std::cout << input.substr(0, input.length() - 1)  << std::endl;
+        else if (input.length() == 1 && !isdigit(input.c_str()[0]))
+		std::cout << static_cast<double>(input.c_str()[0]) << std::endl;
+    else if (temp > std::numeric_limits<double>::max() || temp < -std::numeric_limits<double>::max())
+        throw Conversion::ImpossibleException();
+    else
+        std::cout << std::setprecision(1) << std::fixed <<  static_cast<double>(temp) << std::endl;
+}
+
+bool Conversion::checkChar() const{
+    std::string input = this->getInput();
+    if (input.length() == 1 && isprint(input.c_str()[0])){
+        return true;
+    }
+    return false;
+}
+
+bool Conversion::checkInt() const{
+    std::string input = this->getInput();
+    size_t i = 0;
+    if (input.c_str()[i] == '+' || input.c_str()[i] == '-' )
+		i++;
+	while (i < input.length())
+	{
+		if (isdigit(input.c_str()[i]))
+			i++;
+		else
+			return false;
+	}
+    return true;
+}
+bool Conversion::checkFloat() const{
+    std::string input = this->getInput();
+    size_t i = 0;
+    int count = 0;
+    if (!input.compare("-inff") || !input.compare("+inff") || !input.compare("nanf"))
+		return true;
+    // if (input.c_str()[input.length() -1] != 'f')
+    //     return false;
+    if (input.c_str()[i] == '+' || input.c_str()[i] == '-' )
+		i++;
+    while (i < input.length())
+	{
+        if (isdigit(input.c_str()[i]))
+			i++;
+		else if (input.c_str()[i] == '.')
+        {
+            count++;
+            if ( i+1 == input.length() || count > 1 || i+2 == input.length())
+                return false;
+            i++;
+        }
+        else if (i + 1 == input.length() && input.c_str()[i] == 'f')
+            return true;
+        else
+            return false;
+        
+    }
+    return true;
+}
+bool Conversion::checkDouble() const{
+    std::string input = this->getInput();
+    size_t i = 0;
+    int count = 0;
+    if (!input.compare("-inf") || !input.compare("+inf") || !input.compare("nan"))
+		return true;
+    if (input.c_str()[i] == '+' || input.c_str()[i] == '-' )
+		i++;
+    while (i < input.length())
+	{
+        if (isdigit(input.c_str()[i]))
+			i++;
+		else if (input.c_str()[i] == '.')
+        {
+            count++;
+            if ( i+1 == input.length() || count > 1)
+                return false;
+            i++;
+        }
+        else
+            return false;
+    }
+    return true;
 }
 
 
 void Conversion::printOut() const{
+    if (this->checkChar() == false && this->checkDouble() == false && this->checkFloat() == false && this->checkInt() == false)
+    {
+        // throw Conversion::ImpossibleException();
+        std::cout << "Please enter a parameter with the following type: char, int, float or double." << std::endl;
+        return ;
+    }
     try {
         this->toChar();
 
@@ -111,6 +194,12 @@ void Conversion::printOut() const{
 	}
     try {
         this->toFloat();
+
+    } catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+    try {
+        this->toDouble();
 
     } catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
