@@ -1,6 +1,6 @@
 SRC			= main.cpp 
 OBJ			= $(SRC:.cpp=.o)
-NAME		= data
+NAME		= whatever
 FLAGS		= -Wall -Wextra -Werror -std=c++98 
 CC			= c++
 RM			= rm -rf

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <Array.hpp>
-
+virtual char const * IndexErrorException::what() const{
+    return ("Index is out of range.")
+}
 #define MAX_VAL 750
 int main(int, char**)
 {
