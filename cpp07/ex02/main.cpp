@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include "Array.hpp"
 
 char const *	IndexErrorException::what() const throw()

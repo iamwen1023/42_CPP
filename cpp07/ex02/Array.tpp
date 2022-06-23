@@ -7,15 +7,21 @@ Array<T>::Array(void):_array(new T[0]), _size(0){
 template< typename T >
 Array<T>::Array(unsigned int size):_array(new T[size]), _size(size){
     std::cout << "para constructor" << std::endl;
-    for (unsigned int i = 0; i <size; i++){
-        T *a= new T();
-        this->_array[i] = *a;
-        delete a;
-    }
+    T * tmp = new T();
+	for (unsigned int i = 0; i < size; i++) {
+		this->_array[i] = *tmp;
+	}
+	delete tmp;
+    // for (unsigned int i = 0; i <size; i++){
+    //     T *a= new T();
+    //     this->_array[i] = *a;
+    //     delete a;
+    // }
 }
 template< typename T >
 Array<T>::~Array(void){
-    delete [] this->_array;
+    if (this->_array)
+        delete [] this->_array;
     std::cout << "destructeurs" << std::endl; 
 }
 template< typename T >													
@@ -25,7 +31,7 @@ Array<T>::Array(Array const & src){
     //(*this) = src ;
     this->_size = src._size;
     this->_array = new T[this->_size];
-    for(unsigned int i = 0; i < src._size; i++){
+    for(unsigned int i = 0; i < this->_size; i++){
         this->_array[i] = src._array[i];
     }
 }
@@ -33,22 +39,22 @@ template< typename T >
 Array<T> & Array<T>::operator=(Array const & src){
     std::cout << "operator =" << std::endl;
     if (this == &src)
-        return *this;
+        return (*this);
     //cpp04/ex01
     if (this->_array) {
 		delete [] this->_array;
 	}
     this->_size = src._size;
     this->_array = new T[this->_size];
-    for(unsigned int i = 0; i < src._size; i++){
+    for(unsigned int i = 0; i < this->_size; i++){
         this->_array[i] = src._array[i];
     }
-    return *this;
+    return (*this);
 }
 template< typename T >
 T & Array<T>::operator[](unsigned int index){
     //std::cout << "operator []" << std::endl;
-    if (index > this->size())
+    if (index >= this->size())
         throw IndexErrorException();
     return this->_array[index];
 }
