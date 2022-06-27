@@ -41,35 +41,26 @@ int main(void)
     std::cout << "d address: " << &c << std::endl;
     std::cout << "-----------" << std::endl;
 
-	// Array<std::string> str1 = Array<std::string>();
-    //     for (unsigned int i = 0; i < a.size(); i++) {
-	// 	std::cout << str1[i] << std::endl;
-	// }
+	Array<std::string> str1 = Array<std::string>();
 	Array<std::string> str2 = Array<std::string>(4);
-        for (unsigned int i = 0; i < a.size(); i++) {
-		std::cout << str2[i] << std::endl;
-	}
 	str2[0] = "how";
 	str2[1] = "are";
 	str2[2] = "you";
 	str2[3] = "?";
 
-	// //str1 = str2;
-	// for (int i = 0; i < 4; i++)
-	// 	std::cout << str1[i] << " ";
-	// std::cout << std::endl << "Size = " << str1.size() << std::endl;
-
+	str1 = str2;
+	for (int i = 0; i < 4; i++)
+		std::cout << str1[i] << " ";
+	std::cout << std::endl << "Size = " << str1.size() << std::endl;
 	std::cout << "-----------" << std::endl;
-
-	// try{
-	// 	a[8];
-	// 	b[8];
-	// 	c[8];
-	// }
-	// catch (std::exception & e){
-	// 	std::cout <<  e.what() << std::endl;
-	// 	return 0;
-	// }
+	try{
+		a[8];
+		b[8];
+		c[8];
+	}catch (std::exception & e){
+		std::cout <<  e.what() << std::endl;
+		return 0;
+	}
 	std::cout << "-----------" << std::endl;
 	return 0;
 }
